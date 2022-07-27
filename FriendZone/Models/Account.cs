@@ -6,6 +6,8 @@ namespace FriendZone.Models
         public string Name { get; set; }
 
         public string Picture { get; set; }
+
+        public string Interests { get; set; }
     }
 
     public class Account : Profile

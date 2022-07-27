@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using FriendZone.Models;
 using FriendZone.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace FriendZone.Controllers
 {
@@ -34,6 +34,25 @@ namespace FriendZone.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+        [HttpGet("profiles")]
+
+        public async Task<ActionResult<Profile>> GetProfiles()
+        {
+            try
+            {
+                Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+                List<Profile> profiles = _accountService.GetProfiles();
+                return Ok(profiles);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
     }
 
 

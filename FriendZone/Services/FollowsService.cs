@@ -17,11 +17,11 @@ namespace FriendZone.Services
 
         internal Follow Create(Follow followData)
         {
-            Follow found = Get(followData.Id);
-            if (found.FollowerId == followData.FollowerId && found.FollowingId == followData.FollowerId)
-            {
-                throw new Exception("You are already following this user");
-            }
+            // Follow found = Get(followData.Id);
+            // if (found.FollowerId == followData.FollowerId && found.FollowingId == followData.FollowerId)
+            // {
+            //     throw new Exception("You are already following this user");
+            // }
             return _repo.Create(followData);
         }
 
