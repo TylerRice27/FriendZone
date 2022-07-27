@@ -16,5 +16,10 @@ namespace FriendZone.Models
         public string Email { get; set; }
     }
 
+    public class FollowerViewModel : Profile
+    {
+        public int FollowId { get; set; }
+    }
+
 
 }

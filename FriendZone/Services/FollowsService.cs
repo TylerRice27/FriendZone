@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FriendZone.Models;
 using FriendZone.Repositories;
 
@@ -43,6 +44,11 @@ namespace FriendZone.Services
                 throw new Exception("You cannot delete this");
             }
             _repo.Delete(followId);
+        }
+
+        internal List<FollowerViewModel> GetFollowers(string id)
+        {
+            return _repo.GetFollowers(id);
         }
     }
 }
