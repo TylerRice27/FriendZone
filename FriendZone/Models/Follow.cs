@@ -1,6 +1,6 @@
 namespace FriendZone.Models
 {
-    public class Follows
+    public class Follow
     {
         public int Id { get; set; }
 
