@@ -50,5 +50,38 @@ namespace FriendZone.Controllers
 
 
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Follow> Get(int id)
+        {
+            try
+            {
+                Follow follow = _fs.Get(id);
+                return Ok(follow);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Follow>> Delete(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                _fs.Delete(id, userInfo.Id);
+                return Ok(new { Message = "No longer following this user" });
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

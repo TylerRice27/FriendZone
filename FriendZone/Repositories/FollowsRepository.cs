@@ -27,5 +27,21 @@ namespace FriendZone.Repositories
             return followData;
 
         }
+
+        internal Follow Get(int id)
+        {
+            string sql = @"
+            SELECT *
+            FROM follows
+            WHERE id = @id
+            ";
+            return _db.QueryFirstOrDefault<Follow>(sql, new { id });
+        }
+
+        internal void Delete(int followId)
+        {
+            string sql = "DELETE FROM follows WHERE id = @followId LIMIT 1";
+            _db.Execute(sql, new { followId });
+        }
     }
 }
