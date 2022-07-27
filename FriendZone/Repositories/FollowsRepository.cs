@@ -58,5 +58,19 @@ namespace FriendZone.Repositories
             ";
             return _db.Query<FollowerViewModel>(sql, new { id }).ToList();
         }
+
+        internal List<FollowerViewModel> GetFollowing(string id)
+        {
+            string sql = @"
+            SELECT
+            a.*,
+            f.id AS followId
+            FROM follows f
+            JOIN accounts a ON f.followerId = a.id
+            WHERE f.followerId = @id
+            ";
+            return _db.Query<FollowerViewModel>(sql, new { id }).ToList();
+
+        }
     }
 }

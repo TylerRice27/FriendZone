@@ -53,5 +53,19 @@ namespace FriendZone.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}/following")]
+        public ActionResult<Profile> GetFollowing(string id)
+        {
+            try
+            {
+                List<FollowerViewModel> followers = _fs.GetFollowing(id);
+                return Ok(followers);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
